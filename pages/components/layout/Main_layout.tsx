@@ -45,5 +45,8 @@ const Ul = styled.ul`
 	align-items: center;
 	> li {
 		margin: 0 25px;
+		> p {
+			font-size: 20px;
+		}
 	}
 `
