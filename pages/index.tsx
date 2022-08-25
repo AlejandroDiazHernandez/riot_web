@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import { Fragment } from 'react'
-import BlueButton from './components/buttons/Blue_button'
+import MainButton from './components/buttons/Main_button'
 
 const Home: NextPage = () => {
 	return (
@@ -15,10 +15,26 @@ const Home: NextPage = () => {
 						Adentrate en este nuevo mundo,Adentrate en este nuevo
 						mundo,Adentrate en este nuevo mundo,Adentrate en este nuevo mundo
 					</p>
-					<BlueButton>Descúbrelo!</BlueButton>
+					<MainButton>Descúbrelo!</MainButton>
 				</MainBannerInfo>
 			</MainBannerSection>
-			<NewsSection></NewsSection>
+			<NewsSection>
+				<NewsInfo>
+					<NewsHeadline>
+						<p>Actualidad</p>
+						<MainButton>Ver Todo</MainButton>
+					</NewsHeadline>
+					<RecentNews>
+						<div>Main New</div>
+						<ul>
+							<li>1 subnew</li>
+							<li>2 subnew</li>
+							<li>3 subnew</li>
+							<li>4 subnew</li>
+						</ul>
+					</RecentNews>
+				</NewsInfo>
+			</NewsSection>
 		</Fragment>
 	)
 }
@@ -58,4 +74,21 @@ const NewsSection = styled.section`
 	width: 100%;
 	height: 900px;
 	background-color: rgba(11, 196, 226, 0.2);
+`
+
+const NewsInfo = styled.div`
+	display: flex;
+	flex-direction: column;
+	padding: 0 10%;
+`
+
+const NewsHeadline = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+`
+
+const RecentNews = styled.div`
+	display: flex;
+	align-items: center;
 `

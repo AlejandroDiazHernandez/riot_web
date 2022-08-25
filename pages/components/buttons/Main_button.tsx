@@ -4,13 +4,13 @@ type Props = {
 	children: React.ReactNode
 }
 
-const BlueButton: React.FC<Props> = ({ children }) => {
-	return <BlueButtonStyle type="button">{children}</BlueButtonStyle>
+const MainButton: React.FC<Props> = ({ children }) => {
+	return <MainButtonStyle type="button">{children}</MainButtonStyle>
 }
 
-export default BlueButton
+export default MainButton
 
-const BlueButtonStyle = styled.button`
+const MainButtonStyle = styled.button`
 	background-color: deepskyblue;
 	padding: 15px;
 	color: white;
