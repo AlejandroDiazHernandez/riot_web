@@ -2,7 +2,8 @@ import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import { Fragment } from 'react'
-import MainButton from './components/buttons/Main_button'
+import AllButtons from './components/buttons/All_buttons'
+import RecentNewLiItem from './components/recent_new_list_item/Recent_new_li_item'
 
 const Home: NextPage = () => {
 	return (
@@ -15,24 +16,25 @@ const Home: NextPage = () => {
 						Adentrate en este nuevo mundo,Adentrate en este nuevo
 						mundo,Adentrate en este nuevo mundo,Adentrate en este nuevo mundo
 					</p>
-					<MainButton>Descúbrelo!</MainButton>
+					<AllButtons>Descúbrelo!</AllButtons>
 				</MainBannerInfo>
 			</MainBannerSection>
 			<NewsSection>
 				<NewsInfo>
 					<NewsHeadline>
 						<p>Actualidad</p>
-						<MainButton>Ver Todo</MainButton>
+						<AllButtons secondary>Ver Todo</AllButtons>
 					</NewsHeadline>
-					<RecentNews>
-						<div>Main New</div>
-						<ul>
-							<li>1 subnew</li>
-							<li>2 subnew</li>
-							<li>3 subnew</li>
-							<li>4 subnew</li>
-						</ul>
-					</RecentNews>
+					<RecentNewsContainer>
+						<RecentNewsFrontPage>
+							<p>NoticiasPrime</p>
+						</RecentNewsFrontPage>
+						<RecentNewsUl>
+							{DUMMY.map((recentNew) => (
+								<RecentNewLiItem key={recentNew.text} newsData={recentNew} />
+							))}
+						</RecentNewsUl>
+					</RecentNewsContainer>
 				</NewsInfo>
 			</NewsSection>
 		</Fragment>
@@ -40,6 +42,25 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+const DUMMY = [
+	{
+		text: 'davi1dow',
+		image: '/images/interface.png',
+	},
+	{
+		text: 'davi2dow',
+		image: '/images/poros.png',
+	},
+	{
+		text: 'davi3dow',
+		image: '/images/señora.png',
+	},
+	{
+		text: 'davi4dow',
+		image: '/images/riot_oride.png',
+	},
+]
 
 const MainBannerSection = styled.section`
 	background-image: url(/images/star_guardian_banner.jpg);
@@ -73,7 +94,6 @@ const MainBannerInfo = styled.div`
 const NewsSection = styled.section`
 	width: 100%;
 	height: 900px;
-	background-color: rgba(11, 196, 226, 0.2);
 `
 
 const NewsInfo = styled.div`
@@ -86,9 +106,30 @@ const NewsHeadline = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	> p {
+		font-size: 40px;
+		font-weight: bold;
+		color: white;
+	}
 `
 
-const RecentNews = styled.div`
+const RecentNewsContainer = styled.div`
 	display: flex;
+	justify-content: center;
 	align-items: center;
+`
+
+const RecentNewsFrontPage = styled.div`
+	background-image: url(/images/señor.png);
+	flex: 50%;
+	width: 100%;
+	object-fit: cover;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 700px;
+`
+
+const RecentNewsUl = styled.ul`
+	flex: 50%;
 `
