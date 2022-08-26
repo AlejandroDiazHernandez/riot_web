@@ -31,7 +31,9 @@ const Home: NextPage = () => {
 						</RecentNewsFrontPage>
 						<RecentNewsUl>
 							{DUMMY.map((recentNew) => (
-								<RecentNewLiItem key={recentNew.text} newsData={recentNew} />
+								<li key={recentNew.title}>
+									<RecentNewLiItem newsData={recentNew} />
+								</li>
 							))}
 						</RecentNewsUl>
 					</RecentNewsContainer>
@@ -45,20 +47,24 @@ export default Home
 
 const DUMMY = [
 	{
-		text: 'davi1dow',
+		title: 'Se eliminan las cuentas inactivas',
+		subtitle: 'Noticias',
 		image: '/images/interface.png',
 	},
 	{
-		text: 'davi2dow',
+		title: 'La guerra del poro',
+		subtitle: 'Minijuegos',
 		image: '/images/poros.png',
 	},
 	{
-		text: 'davi3dow',
+		title: 'Rainbow rioters',
+		subtitle: 'Dentro de Riot',
 		image: '/images/señora.png',
 	},
 	{
-		text: 'davi4dow',
-		image: '/images/riot_oride.png',
+		title: 'Avance orgullo 2022',
+		subtitle: 'Dentro de Riot',
+		image: '/images/riot_pride.png',
 	},
 ]
 
@@ -120,6 +126,7 @@ const RecentNewsContainer = styled.div`
 `
 
 const RecentNewsFrontPage = styled.div`
+	position: relative;
 	background-image: url(/images/señor.png);
 	flex: 50%;
 	width: 100%;
@@ -128,8 +135,36 @@ const RecentNewsFrontPage = styled.div`
 	background-position: center;
 	background-repeat: no-repeat;
 	height: 700px;
+	border-radius: 25px;
+	cursor: pointer;
+	border: 2px solid transparent;
+	> p {
+		position: absolute;
+		font-size: 26px;
+		font-weight: bold;
+		color: white;
+		bottom: 0;
+		margin-left: 35px;
+	}
+	:hover {
+		border: 2px solid wheat;
+	}
 `
 
 const RecentNewsUl = styled.ul`
+	height: 700px;
+	display: flex;
+	margin: 0;
+	flex-direction: column;
+	justify-content: space-between;
 	flex: 50%;
+	> li {
+		list-style: none;
+		cursor: pointer;
+		border: 2px solid transparent;
+		border-radius: 15px;
+		:hover {
+			border: 2px solid wheat;
+		}
+	}
 `
