@@ -3,49 +3,10 @@ import type { NextPage } from 'next'
 import Image from 'next/image'
 import { Fragment } from 'react'
 import AllButtons from './components/buttons/All_buttons'
+import GameItem from './components/game_item/Game_item'
 import RecentNewLiItem from './components/recent_new_list_item/Recent_new_li_item'
 
-const Home: NextPage = () => {
-	return (
-		<Fragment>
-			<MainBannerSection>
-				<MainBannerInfo>
-					<Image src={'/images/star_guardian.webp'} width={750} height={125} />
-					<p>Adentrate en este nuevo mundo</p>
-					<p>
-						Adentrate en este nuevo mundo,Adentrate en este nuevo
-						mundo,Adentrate en este nuevo mundo,Adentrate en este nuevo mundo
-					</p>
-					<AllButtons>Descúbrelo!</AllButtons>
-				</MainBannerInfo>
-			</MainBannerSection>
-			<NewsSection>
-				<NewsInfo>
-					<NewsHeadline>
-						<p>Actualidad</p>
-						<AllButtons secondary>Ver Todo</AllButtons>
-					</NewsHeadline>
-					<RecentNewsContainer>
-						<RecentNewsFrontPage>
-							<p>NoticiasPrime</p>
-						</RecentNewsFrontPage>
-						<RecentNewsUl>
-							{DUMMY.map((recentNew) => (
-								<li key={recentNew.title}>
-									<RecentNewLiItem newsData={recentNew} />
-								</li>
-							))}
-						</RecentNewsUl>
-					</RecentNewsContainer>
-				</NewsInfo>
-			</NewsSection>
-		</Fragment>
-	)
-}
-
-export default Home
-
-const DUMMY = [
+const DUMMY_NEWS = [
 	{
 		title: 'Se eliminan las cuentas inactivas',
 		subtitle: 'Noticias',
@@ -67,6 +28,109 @@ const DUMMY = [
 		image: '/images/riot_pride.png',
 	},
 ]
+
+const DUMMY_GAMES = [
+	{
+		title: 'League Of Legends',
+		image: '/images/league.jpg',
+	},
+	{
+		title: 'Valorant',
+		image: '/images/valorant.png',
+	},
+	{
+		title: 'Team Fight Tactics',
+		image: '/images/tft.jpg',
+	},
+	{
+		title: 'Wild Rift',
+		image: '/images/wild_rift.png',
+	},
+	{
+		title: 'Legends Of Runeterra',
+		image: '/images/runeterra.png',
+	},
+	{
+		title: 'Ruined King',
+		image: '/images/ruined_king.png',
+	},
+]
+
+const Home: NextPage = () => {
+	return (
+		<Fragment>
+			<MainBannerSection>
+				<MainBannerInfo>
+					<Image src={'/images/star_guardian.webp'} width={750} height={125} />
+					<p>Adentrate en este nuevo mundo</p>
+					<p>
+						Adentrate en este nuevo mundo,Adentrate en este nuevo
+						mundo,Adentrate en este nuevo mundo,Adentrate en este nuevo mundo
+					</p>
+					<AllButtons>Descúbrelo!</AllButtons>
+				</MainBannerInfo>
+			</MainBannerSection>
+			<NewsSection>
+				<BlockColumns>
+					<HeadLine>
+						<p>Actualidad</p>
+						<AllButtons secondary>Ver Todo</AllButtons>
+					</HeadLine>
+					<RecentNewsContainer>
+						<RecentNewsFrontPage>
+							<p>NoticiasPrime</p>
+						</RecentNewsFrontPage>
+						<RecentNewsUl>
+							{DUMMY_NEWS.map((recentNew) => (
+								<li key={recentNew.title}>
+									<RecentNewLiItem newsData={recentNew} />
+								</li>
+							))}
+						</RecentNewsUl>
+					</RecentNewsContainer>
+				</BlockColumns>
+			</NewsSection>
+			<GamesSection>
+				<BlockColumns>
+					<HeadLine>
+						<p>Nuestros Juegos</p>
+					</HeadLine>
+					<OurGamesUl>
+						{DUMMY_GAMES.map((games) => (
+							<li key={games.title}>
+								<GameItem gameData={games} />
+							</li>
+						))}
+					</OurGamesUl>
+				</BlockColumns>
+			</GamesSection>
+		</Fragment>
+	)
+}
+
+export default Home
+
+const OurGamesUl = styled.ul`
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 15px;
+	> li {
+		list-style: none;
+	}
+	>li: nth-child(-n + 2) {
+		width: 49%;
+	}
+	>li: nth-child(n + 3) {
+		width: 32%;
+	}
+`
+
+const GamesSection = styled.section`
+	background-color: #1f1f1f;
+`
 
 const MainBannerSection = styled.section`
 	background-image: url(/images/star_guardian_banner.jpg);
@@ -100,15 +164,16 @@ const MainBannerInfo = styled.div`
 const NewsSection = styled.section`
 	width: 100%;
 	height: 900px;
+	background: linear-gradient(199deg, rgb(35, 77, 54), rgb(0, 0, 0));
 `
 
-const NewsInfo = styled.div`
+const BlockColumns = styled.div`
 	display: flex;
 	flex-direction: column;
 	padding: 0 10%;
 `
 
-const NewsHeadline = styled.div`
+const HeadLine = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
