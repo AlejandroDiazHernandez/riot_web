@@ -29,6 +29,34 @@ const DUMMY_NEWS = [
 	},
 ]
 
+const DUMMY_NEWSLETTER = [
+	{
+		title: 'Noticias Prime',
+		subtitle: 'Noticias',
+		image: '/images/señor.png',
+	},
+	{
+		title: 'Se eliminan las cuentas inactivas',
+		subtitle: 'Noticias',
+		image: '/images/interface.png',
+	},
+	{
+		title: 'La guerra del poro',
+		subtitle: 'Minijuegos',
+		image: '/images/poros.png',
+	},
+	{
+		title: 'Rainbow rioters',
+		subtitle: 'Dentro de Riot',
+		image: '/images/señora.png',
+	},
+	{
+		title: 'Avance orgullo 2022',
+		subtitle: 'Dentro de Riot',
+		image: '/images/riot_pride.png',
+	},
+]
+
 const DUMMY_GAMES = [
 	{
 		title: 'League Of Legends',
@@ -56,6 +84,10 @@ const DUMMY_GAMES = [
 	},
 ]
 
+interface NewsLetterLiProps {
+	index: string
+}
+
 const Home: NextPage = () => {
 	return (
 		<Fragment>
@@ -76,7 +108,15 @@ const Home: NextPage = () => {
 						<p>Actualidad</p>
 						<AllButtons secondary>Ver Todo</AllButtons>
 					</HeadLine>
-					<RecentNewsContainer>
+
+					<NewsLetterUl>
+						{DUMMY_NEWSLETTER.map((newsData, index) => (
+							<NewsLetterLi key={newsData.title} index={index.toString()}>
+								<RecentNewLiItem newsData={newsData} index={index.toString()} />
+							</NewsLetterLi>
+						))}
+					</NewsLetterUl>
+					{/* <RecentNewsContainer>
 						<RecentNewsFrontPage>
 							<p>NoticiasPrime</p>
 						</RecentNewsFrontPage>
@@ -87,7 +127,7 @@ const Home: NextPage = () => {
 								</li>
 							))}
 						</RecentNewsUl>
-					</RecentNewsContainer>
+					</RecentNewsContainer> */}
 				</BlockColumns>
 			</NewsSection>
 			<GamesSection>
@@ -109,6 +149,44 @@ const Home: NextPage = () => {
 }
 
 export default Home
+
+const NewsLetterUl = styled.ul`
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 125px 125px 125px 125px;
+	grid-template-areas:
+		'element0 element1'
+		'element0 element2'
+		'element0 element3'
+		'element0 element4';
+	grid-gap: 10px;
+	height: 700px;
+
+	@media only screen and (max-width: 550px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: 200px 200px 200px 200px 200px;
+		grid-template-areas:
+			'element0'
+			'element1'
+			'element2'
+			'element3'
+			'element4';
+		grid-gap: 10px;
+	}
+`
+
+const NewsLetterLi = styled.li<NewsLetterLiProps>`
+	grid-area: ${(props) => 'element' + props.index};
+	list-style: none;
+	cursor: pointer;
+	border: 2px solid transparent;
+	border-radius: 15px;
+	:hover {
+		border: 2px solid wheat;
+	}
+`
 
 const OurGamesUl = styled.ul`
 	margin: 0;
@@ -165,6 +243,10 @@ const NewsSection = styled.section`
 	width: 100%;
 	height: 900px;
 	background: linear-gradient(199deg, rgb(35, 77, 54), rgb(0, 0, 0));
+
+	@media only screen and (max-width: 550px) {
+		height: 1300px;
+	}
 `
 
 const BlockColumns = styled.div`
@@ -184,13 +266,13 @@ const HeadLine = styled.div`
 	}
 `
 
-const RecentNewsContainer = styled.div`
+/* const RecentNewsContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-`
+` */
 
-const RecentNewsFrontPage = styled.div`
+/* const RecentNewsFrontPage = styled.div`
 	position: relative;
 	background-image: url(/images/señor.png);
 	flex: 50%;
@@ -214,9 +296,9 @@ const RecentNewsFrontPage = styled.div`
 	:hover {
 		border: 2px solid wheat;
 	}
-`
+` */
 
-const RecentNewsUl = styled.ul`
+/* const RecentNewsUl = styled.ul`
 	height: 700px;
 	display: flex;
 	margin: 0;
@@ -232,4 +314,4 @@ const RecentNewsUl = styled.ul`
 			border: 2px solid wheat;
 		}
 	}
-`
+` */

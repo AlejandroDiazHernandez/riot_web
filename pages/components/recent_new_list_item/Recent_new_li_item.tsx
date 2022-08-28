@@ -3,6 +3,7 @@ import RiotFist from '../svg/Riot_fist'
 
 interface Props {
 	newsData: NewsData
+	index: string
 }
 
 interface NewsData {
@@ -13,17 +14,18 @@ interface NewsData {
 
 interface ImageInfoProps {
 	image: string
+	index: string
 }
 
-const RecentNewLiItem: React.FC<Props> = ({ newsData }) => {
+const RecentNewLiItem: React.FC<Props> = ({ newsData, index }) => {
 	const { title, subtitle, image } = newsData
 	return (
 		<MainDiv>
-			<TextInfo>
+			<TextInfo image={image} index={index}>
 				<h3>{title}</h3>
 				<p>{subtitle}</p>
 			</TextInfo>
-			<ImageInfo image={image} />
+			{index === '0' ? null : <ImageInfo image={image} index={index} />}
 			<span>
 				<RiotFist width={25} height={25} />
 			</span>
@@ -34,6 +36,8 @@ const RecentNewLiItem: React.FC<Props> = ({ newsData }) => {
 export default RecentNewLiItem
 
 const MainDiv = styled.div`
+	height: 100%;
+	width: 100%;
 	position: relative;
 	> span {
 		position: absolute;
@@ -42,12 +46,22 @@ const MainDiv = styled.div`
 	}
 `
 
-const TextInfo = styled.div`
-	width: 75%;
+const TextInfo = styled.div<ImageInfoProps>`
+	height: 100%;
+	width: 100%;
 	background-color: #222121;
 	padding: 35px;
 	border-radius: 15px;
 	border: 2px solid transparent;
+	box-sizing: border-box;
+	background-image: url(${({ index, image }) =>
+		index === '0' ? image : null});
+	background-size: ${({ index }) => (index === '0' ? 'cover' : null)};
+	background-position: ${({ index }) => (index === '0' ? 'center' : null)};
+	position: ${({ index }) => (index === '0' ? 'absolute' : null)};
+	right: ${({ index }) => (index === '0' ? '0' : null)};
+	top: ${({ index }) => (index === '0' ? '0' : null)};
+	background-repeat: ${({ index }) => (index === '0' ? 'no-repeat' : null)};
 	> h3 {
 		color: white;
 		font-size: 25px;
