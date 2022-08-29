@@ -88,6 +88,11 @@ interface NewsLetterLiProps {
 	index: string
 }
 
+interface GamesLiProps {
+	index: string
+}
+
+//Commented code was flex box
 const Home: NextPage = () => {
 	return (
 		<Fragment>
@@ -108,7 +113,6 @@ const Home: NextPage = () => {
 						<p>Actualidad</p>
 						<AllButtons secondary>Ver Todo</AllButtons>
 					</HeadLine>
-
 					<NewsLetterUl>
 						{DUMMY_NEWSLETTER.map((newsData, index) => (
 							<NewsLetterLi key={newsData.title} index={index.toString()}>
@@ -135,13 +139,20 @@ const Home: NextPage = () => {
 					<HeadLine>
 						<p>Nuestros Juegos</p>
 					</HeadLine>
-					<OurGamesUl>
+					{/* <OurGamesUl>
 						{DUMMY_GAMES.map((games) => (
 							<li key={games.title}>
 								<GameItem gameData={games} />
 							</li>
 						))}
-					</OurGamesUl>
+					</OurGamesUl> */}
+					<GamesUl>
+						{DUMMY_GAMES.map((games, index) => (
+							<GamesLi key={games.title} index={index.toString()}>
+								<GameItem gameData={games} />
+							</GamesLi>
+						))}
+					</GamesUl>
 				</BlockColumns>
 			</GamesSection>
 		</Fragment>
@@ -164,7 +175,7 @@ const NewsLetterUl = styled.ul`
 	grid-gap: 10px;
 	height: 700px;
 
-	@media only screen and (max-width: 550px) {
+	@media only screen and (max-width: 800px) {
 		grid-template-columns: 1fr;
 		grid-template-rows: 200px 200px 200px 200px 200px;
 		grid-template-areas:
@@ -188,7 +199,7 @@ const NewsLetterLi = styled.li<NewsLetterLiProps>`
 	}
 `
 
-const OurGamesUl = styled.ul`
+/* const OurGamesUl = styled.ul`
 	margin: 0;
 	padding: 0;
 	display: flex;
@@ -204,9 +215,42 @@ const OurGamesUl = styled.ul`
 	>li: nth-child(n + 3) {
 		width: 32%;
 	}
+` */
+
+const GamesUl = styled.ul`
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	grid-auto-rows: 400px;
+	grid-template-areas:
+		'element0 element0 element0 element1 element1 element1'
+		'element2 element2 element3 element3 element4 element4'
+		'. . element5 element5 . .';
+	grid-gap: 10px;
+
+	@media only screen and (max-width: 800px) {
+		grid-template-columns: 1fr;
+		grid-auto-rows: 200px;
+		grid-template-areas:
+			'element0'
+			'element1'
+			'element2'
+			'element3'
+			'element4'
+			'element5';
+		grid-gap: 10px;
+	}
+`
+
+const GamesLi = styled.li<GamesLiProps>`
+	grid-area: ${(props) => 'element' + props.index};
+	list-style: none;
+	border-radius: 15px;
 `
 
 const GamesSection = styled.section`
+	height: 1400px;
 	background-color: #1f1f1f;
 `
 
@@ -244,7 +288,7 @@ const NewsSection = styled.section`
 	height: 900px;
 	background: linear-gradient(199deg, rgb(35, 77, 54), rgb(0, 0, 0));
 
-	@media only screen and (max-width: 550px) {
+	@media only screen and (max-width: 800px) {
 		height: 1300px;
 	}
 `
