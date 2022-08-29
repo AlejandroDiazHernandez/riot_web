@@ -227,7 +227,7 @@ const GamesUl = styled.ul`
 		'element0 element0 element0 element1 element1 element1'
 		'element2 element2 element3 element3 element4 element4'
 		'. . element5 element5 . .';
-	grid-gap: 10px;
+	grid-gap: 25px;
 
 	@media only screen and (max-width: 800px) {
 		grid-template-columns: 1fr;

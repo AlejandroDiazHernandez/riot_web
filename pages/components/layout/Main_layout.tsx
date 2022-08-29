@@ -3,7 +3,7 @@ import RiotFist from '../svg/Riot_fist'
 
 const MainLayout: React.FC = () => {
 	return (
-		<NavBar>
+		<NavBar id="top">
 			<Ul>
 				<li>
 					<RiotFist width={25} height={25} />

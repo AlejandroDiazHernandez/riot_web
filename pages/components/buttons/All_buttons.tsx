@@ -16,6 +16,7 @@ const AllButtons: React.FC<Props> = ({ children, secondary }) => {
 export default AllButtons
 
 const MainButtonBlue = styled.button`
+	cursor: pointer;
 	background-color: deepskyblue;
 	padding: 15px;
 	color: white;
@@ -29,6 +30,7 @@ const MainButtonBlue = styled.button`
 `
 
 const SecondaryButtonBlack = styled.button`
+	cursor: pointer;
 	background-color: black;
 	padding: 5px;
 	color: white;

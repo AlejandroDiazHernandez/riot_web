@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import Footer from './Footer'
 import MainLayout from './Main_layout'
 
 type Props = {
@@ -10,6 +11,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 		<Fragment>
 			<MainLayout />
 			{children}
+			<Footer />
 		</Fragment>
 	)
 }
