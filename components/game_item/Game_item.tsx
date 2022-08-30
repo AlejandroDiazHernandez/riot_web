@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Link from 'next/link'
 
 interface GameItemProps {
 	gameData: GameData
@@ -7,6 +8,7 @@ interface GameItemProps {
 interface GameData {
 	title: string
 	image: string
+	url: string
 }
 
 interface GameItemDivProps {
@@ -14,11 +16,15 @@ interface GameItemDivProps {
 }
 
 const GameItem: React.FC<GameItemProps> = ({ gameData }) => {
-	const { title, image } = gameData
+	const { title, image, url } = gameData
 	return (
-		<GameTarget image={image}>
-			<p>{title}</p>
-		</GameTarget>
+		<Link href={url}>
+			<a target="_blank">
+				<GameTarget image={image}>
+					<p>{title}</p>
+				</GameTarget>
+			</a>
+		</Link>
 	)
 }
 

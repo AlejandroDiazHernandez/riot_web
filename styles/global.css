@@ -13,3 +13,10 @@
 body {
 	margin: 0;
 }
+
+a,
+a:focus,
+a:active,
+a:hover {
+	text-decoration: none;
+}

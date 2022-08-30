@@ -1,19 +1,26 @@
 import styled from '@emotion/styled'
+import Link from 'next/link'
 import RiotFist from '../svg/Riot_fist'
 
 const MainLayout: React.FC = () => {
 	return (
 		<NavBar id="top">
 			<Ul>
-				<li>
-					<RiotFist width={25} height={25} />
-				</li>
-				<li>
-					<p>Quién soy</p>
-				</li>
-				<li>
-					<p>Noticias</p>
-				</li>
+				<Link href="/">
+					<li>
+						<RiotFist width={25} height={25} />
+					</li>
+				</Link>
+				<Link href="/about_me/alejandro_diaz_hernandez">
+					<li>
+						<p>Quién soy</p>
+					</li>
+				</Link>
+				<Link href="/news">
+					<li>
+						<p>Noticias</p>
+					</li>
+				</Link>
 			</Ul>
 			<Ul>
 				<li>
@@ -45,6 +52,7 @@ const Ul = styled.ul`
 	align-items: center;
 	> li {
 		margin: 0 25px;
+		cursor: pointer;
 		> p {
 			font-size: 20px;
 		}

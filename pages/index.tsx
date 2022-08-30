@@ -1,12 +1,13 @@
 import styled from '@emotion/styled'
 import type { NextPage } from 'next'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Fragment } from 'react'
-import AllButtons from './components/buttons/All_buttons'
-import GameItem from './components/game_item/Game_item'
-import RecentNewLiItem from './components/recent_new_list_item/Recent_new_li_item'
+import AllButtons from '../components/buttons/All_buttons'
+import GameItem from '../components/game_item/Game_item'
+import RecentNewLiItem from '../components/recent_new_list_item/Recent_new_li_item'
 
-const DUMMY_NEWS = [
+/* const DUMMY_NEWS = [
 	{
 		title: 'Se eliminan las cuentas inactivas',
 		subtitle: 'Noticias',
@@ -27,7 +28,7 @@ const DUMMY_NEWS = [
 		subtitle: 'Dentro de Riot',
 		image: '/images/riot_pride.png',
 	},
-]
+] */
 
 const DUMMY_NEWSLETTER = [
 	{
@@ -61,26 +62,32 @@ const DUMMY_GAMES = [
 	{
 		title: 'League Of Legends',
 		image: '/images/league.jpg',
+		url: 'https://www.leagueoflegends.com/es-es/',
 	},
 	{
 		title: 'Valorant',
 		image: '/images/valorant.png',
+		url: 'https://playvalorant.com/es-es/',
 	},
 	{
 		title: 'Team Fight Tactics',
 		image: '/images/tft.jpg',
+		url: 'https://teamfighttactics.leagueoflegends.com/es-es/',
 	},
 	{
 		title: 'Wild Rift',
 		image: '/images/wild_rift.png',
+		url: 'https://wildrift.leagueoflegends.com/es-es/',
 	},
 	{
 		title: 'Legends Of Runeterra',
 		image: '/images/runeterra.png',
+		url: 'https://playruneterra.com/es-es/',
 	},
 	{
 		title: 'Ruined King',
 		image: '/images/ruined_king.png',
+		url: 'https://ruinedking.com/en-us/',
 	},
 ]
 
@@ -104,7 +111,11 @@ const Home: NextPage = () => {
 						Adentrate en este nuevo mundo,Adentrate en este nuevo
 						mundo,Adentrate en este nuevo mundo,Adentrate en este nuevo mundo
 					</p>
-					<AllButtons>Descúbrelo!</AllButtons>
+					<Link href="https://starguardian.riotgames.com/es-es/">
+						<a target="_blank">
+							<AllButtons>Descúbrelo!</AllButtons>
+						</a>
+					</Link>
 				</MainBannerInfo>
 			</MainBannerSection>
 			<NewsSection>

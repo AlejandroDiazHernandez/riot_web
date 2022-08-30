@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import Link from 'next/link'
 import RiotFist from '../svg/Riot_fist'
 
 interface Props {
@@ -20,16 +21,18 @@ interface ImageInfoProps {
 const RecentNewLiItem: React.FC<Props> = ({ newsData, index }) => {
 	const { title, subtitle, image } = newsData
 	return (
-		<MainDiv>
-			<TextInfo image={image} index={index}>
-				<h3>{title}</h3>
-				<p>{subtitle}</p>
-			</TextInfo>
-			{index === '0' ? null : <ImageInfo image={image} index={index} />}
-			<span>
-				<RiotFist width={25} height={25} />
-			</span>
-		</MainDiv>
+		<Link href={`/news/${title}`}>
+			<MainDiv>
+				<TextInfo image={image} index={index}>
+					<h3>{title}</h3>
+					<p>{subtitle}</p>
+				</TextInfo>
+				{index === '0' ? null : <ImageInfo image={image} index={index} />}
+				<span>
+					<RiotFist width={25} height={25} />
+				</span>
+			</MainDiv>
+		</Link>
 	)
 }
 
