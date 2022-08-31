@@ -5,7 +5,7 @@ interface GameItemProps {
 	gameData: GameData
 }
 
-interface GameData {
+export interface GameData {
 	title: string
 	image: string
 	url: string

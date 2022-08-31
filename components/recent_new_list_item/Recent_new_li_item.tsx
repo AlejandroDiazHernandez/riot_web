@@ -7,7 +7,8 @@ interface Props {
 	index: string
 }
 
-interface NewsData {
+export interface NewsData {
+	id: string
 	title: string
 	subtitle: string
 	image: string
@@ -19,9 +20,9 @@ interface ImageInfoProps {
 }
 
 const RecentNewLiItem: React.FC<Props> = ({ newsData, index }) => {
-	const { title, subtitle, image } = newsData
+	const { title, subtitle, image, id } = newsData
 	return (
-		<Link href={`/news/${title}`}>
+		<Link href={`/news/${id}`}>
 			<MainDiv>
 				<TextInfo image={image} index={index}>
 					<h3>{title}</h3>

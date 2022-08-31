@@ -1,11 +1,13 @@
 import styled from '@emotion/styled'
-import type { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment } from 'react'
 import AllButtons from '../components/buttons/All_buttons'
 import GameItem from '../components/game_item/Game_item'
 import RecentNewLiItem from '../components/recent_new_list_item/Recent_new_li_item'
+import { NewsData } from '../components/recent_new_list_item/Recent_new_li_item'
+import { GameData } from '../components/game_item/Game_item'
+import { GetStaticProps } from 'next'
 
 /* const DUMMY_NEWS = [
 	{
@@ -30,67 +32,6 @@ import RecentNewLiItem from '../components/recent_new_list_item/Recent_new_li_it
 	},
 ] */
 
-const DUMMY_NEWSLETTER = [
-	{
-		title: 'Noticias Prime',
-		subtitle: 'Noticias',
-		image: '/images/señor.png',
-	},
-	{
-		title: 'Se eliminan las cuentas inactivas',
-		subtitle: 'Noticias',
-		image: '/images/interface.png',
-	},
-	{
-		title: 'La guerra del poro',
-		subtitle: 'Minijuegos',
-		image: '/images/poros.png',
-	},
-	{
-		title: 'Rainbow rioters',
-		subtitle: 'Dentro de Riot',
-		image: '/images/señora.png',
-	},
-	{
-		title: 'Avance orgullo 2022',
-		subtitle: 'Dentro de Riot',
-		image: '/images/riot_pride.png',
-	},
-]
-
-const DUMMY_GAMES = [
-	{
-		title: 'League Of Legends',
-		image: '/images/league.jpg',
-		url: 'https://www.leagueoflegends.com/es-es/',
-	},
-	{
-		title: 'Valorant',
-		image: '/images/valorant.png',
-		url: 'https://playvalorant.com/es-es/',
-	},
-	{
-		title: 'Team Fight Tactics',
-		image: '/images/tft.jpg',
-		url: 'https://teamfighttactics.leagueoflegends.com/es-es/',
-	},
-	{
-		title: 'Wild Rift',
-		image: '/images/wild_rift.png',
-		url: 'https://wildrift.leagueoflegends.com/es-es/',
-	},
-	{
-		title: 'Legends Of Runeterra',
-		image: '/images/runeterra.png',
-		url: 'https://playruneterra.com/es-es/',
-	},
-	{
-		title: 'Ruined King',
-		image: '/images/ruined_king.png',
-		url: 'https://ruinedking.com/en-us/',
-	},
-]
-
 interface NewsLetterLiProps {
 	index: string
 }
@@ -99,8 +40,29 @@ interface GamesLiProps {
 	index: string
 }
 
+interface HomeProps {
+	newsletter: NewsData[]
+	games: GameData[]
+}
+
+//I am testing things with fetch and grid but I know it would be better if I do the API calls in their respective components
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+	const resNews = await fetch('http://localhost:3000/api/newsletter')
+	const newsletter = await resNews.json()
+
+	const resGames = await fetch('http://localhost:3000/api/games')
+	const games = await resGames.json()
+
+	return {
+		props: {
+			newsletter,
+			games,
+		},
+	}
+}
+
 //Commented code was flex box
-const Home: NextPage = () => {
+const Home: React.FC<HomeProps> = ({ newsletter, games }) => {
 	return (
 		<Fragment>
 			<MainBannerSection>
@@ -125,7 +87,7 @@ const Home: NextPage = () => {
 						<AllButtons secondary>Ver Todo</AllButtons>
 					</HeadLine>
 					<NewsLetterUl>
-						{DUMMY_NEWSLETTER.map((newsData, index) => (
+						{newsletter.map((newsData, index) => (
 							<NewsLetterLi key={newsData.title} index={index.toString()}>
 								<RecentNewLiItem newsData={newsData} index={index.toString()} />
 							</NewsLetterLi>
@@ -158,7 +120,7 @@ const Home: NextPage = () => {
 						))}
 					</OurGamesUl> */}
 					<GamesUl>
-						{DUMMY_GAMES.map((games, index) => (
+						{games.map((games, index) => (
 							<GamesLi key={games.title} index={index.toString()}>
 								<GameItem gameData={games} />
 							</GamesLi>

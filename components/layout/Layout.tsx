@@ -1,4 +1,5 @@
 import { Fragment } from 'react'
+import Meta from '../Meta'
 import Footer from './Footer'
 import MainLayout from './Main_layout'
 
@@ -9,6 +10,7 @@ type Props = {
 const Layout: React.FC<Props> = ({ children }) => {
 	return (
 		<Fragment>
+			<Meta />
 			<MainLayout />
 			{children}
 			<Footer />
