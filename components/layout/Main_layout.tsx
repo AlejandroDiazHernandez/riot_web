@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
+import Search from '../Search'
 import RiotFist from '../svg/Riot_fist'
 
 const MainLayout: React.FC = () => {
@@ -24,7 +25,7 @@ const MainLayout: React.FC = () => {
 			</Ul>
 			<Ul>
 				<li>
-					<p>Añadir buscador</p>
+					<Search />
 				</li>
 				<li>
 					<p>Añadir Log-in</p>

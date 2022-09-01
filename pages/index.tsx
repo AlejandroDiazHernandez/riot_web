@@ -58,6 +58,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
 			newsletter,
 			games,
 		},
+		revalidate: 600,
 	}
 }
 
