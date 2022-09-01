@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next'
+import { useRouter } from 'next/router'
 import { NewsData } from '../../components/recent_new_list_item/Recent_new_li_item'
 
 interface NewsPageProps {
@@ -18,7 +19,27 @@ export const getStaticProps: GetStaticProps<NewsPageProps> = async () => {
 }
 
 const NewsPage: React.FC<NewsPageProps> = ({ newsletter }) => {
-	return (
+	const router = useRouter()
+
+	const { q } = router.query
+	let filteredNews: NewsData[] = []
+
+	if (q && q.length > 0) {
+		filteredNews = newsletter.filter((news) =>
+			new RegExp(q.toString().toLowerCase(), 'i').test(
+				news.title.toLowerCase(),
+			),
+		)
+	}
+
+	return filteredNews?.length > 0 ? (
+		<div>
+			<p>Noticias frescas!</p>
+			{filteredNews.map((news) => (
+				<p key={news.id}>{news.title}</p>
+			))}
+		</div>
+	) : (
 		<div>
 			<p>Noticias frescas!</p>
 			{newsletter.map((news) => (
