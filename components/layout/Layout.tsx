@@ -12,7 +12,7 @@ const Layout: React.FC<Props> = ({ children }) => {
 		<Fragment>
 			<Meta />
 			<MainLayout />
-			{children}
+			<main>{children}</main>
 			<Footer />
 		</Fragment>
 	)

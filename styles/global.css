@@ -10,6 +10,12 @@
 	}
 }
 
+main {
+	padding: 15px 0;
+	min-height: calc(100vh - 210px);
+	background: linear-gradient(199deg, rgb(78 87 121), rgb(0, 0, 0));
+}
+
 body {
 	margin: 0;
 }
@@ -19,4 +25,19 @@ a:focus,
 a:active,
 a:hover {
 	text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color: white;
 }

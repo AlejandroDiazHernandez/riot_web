@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { NewsData } from '../../components/recent_new_list_item/Recent_new_li_item'
 import Image from 'next/image'
 import { ParsedUrlQuery } from 'querystring'
+import styled from '@emotion/styled'
 
 interface NewsIdPageProps {
 	newsletter: NewsData
@@ -39,14 +40,23 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 const NewsIdPage: React.FC<NewsIdPageProps> = ({ newsletter }) => {
-	const { id, title, subtitle, image } = newsletter
+	const { title, subtitle, image } = newsletter
 	return (
-		<div>
+		<MainDiv>
+			<Image src={image} width={800} height={500} />
 			<h1>{title}</h1>
 			<h3>{subtitle}</h3>
-			<Image src={image} width={800} height={500} />
-		</div>
+		</MainDiv>
 	)
 }
 
 export default NewsIdPage
+
+const MainDiv = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	padding: 15px;
+`

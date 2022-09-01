@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import { NewsData } from '../../components/recent_new_list_item/Recent_new_li_item'
 import Image from 'next/image'
 import Link from 'next/link'
+import Card from '../../components/Card'
+import styled from '@emotion/styled'
 
 interface NewsPageProps {
 	newsletter: NewsData[]
@@ -35,30 +37,43 @@ const NewsPage: React.FC<NewsPageProps> = ({ newsletter }) => {
 	}
 
 	return filteredNews?.length > 0 ? (
-		<div>
-			<p>Noticias frescas!</p>
-			{filteredNews.map((news) => (
-				<Link href={`/news/${news.id}`}>
-					<div key={news.id}>
-						<p>{news.title}</p>
-						<Image src={news.image} width={800} height={500} />
-					</div>
-				</Link>
-			))}
-		</div>
+		<section>
+			<Ul>
+				{filteredNews.map((news) => (
+					<Link key={news.id} href={`/news/${news.id}`}>
+						<li>
+							<Card news={news} />
+						</li>
+					</Link>
+				))}
+			</Ul>
+		</section>
 	) : (
-		<div>
-			<p>Noticias frescas!</p>
-			{newsletter.map((news) => (
-				<Link href={`/news/${news.id}`}>
-					<div key={news.id}>
-						<p>{news.title}</p>
-						<Image src={news.image} width={800} height={500} />
-					</div>
-				</Link>
-			))}
-		</div>
+		<section>
+			<Ul>
+				{newsletter.map((news) => (
+					<Link key={news.id} href={`/news/${news.id}`}>
+						<li>
+							<Card news={news} />
+						</li>
+					</Link>
+				))}
+			</Ul>
+		</section>
 	)
 }
 
 export default NewsPage
+
+const Ul = styled.ul`
+	padding: 0;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: 15px;
+	> li {
+		list-style: none;
+	}
+`

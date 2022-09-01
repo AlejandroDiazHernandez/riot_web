@@ -14,7 +14,7 @@ const PageFooter = styled.footer`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: linear-gradient(199deg, rgb(35, 77, 54), rgb(0, 0, 0));
+	background: linear-gradient(199deg, rgb(9 27 55), rgb(38 24 45));
 	height: 100px;
 	> a,
 	a:focus,
