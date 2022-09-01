@@ -1,6 +1,8 @@
 import { GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { NewsData } from '../../components/recent_new_list_item/Recent_new_li_item'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface NewsPageProps {
 	newsletter: NewsData[]
@@ -36,14 +38,24 @@ const NewsPage: React.FC<NewsPageProps> = ({ newsletter }) => {
 		<div>
 			<p>Noticias frescas!</p>
 			{filteredNews.map((news) => (
-				<p key={news.id}>{news.title}</p>
+				<Link href={`/news/${news.id}`}>
+					<div key={news.id}>
+						<p>{news.title}</p>
+						<Image src={news.image} width={800} height={500} />
+					</div>
+				</Link>
 			))}
 		</div>
 	) : (
 		<div>
 			<p>Noticias frescas!</p>
 			{newsletter.map((news) => (
-				<p key={news.id}>{news.title}</p>
+				<Link href={`/news/${news.id}`}>
+					<div key={news.id}>
+						<p>{news.title}</p>
+						<Image src={news.image} width={800} height={500} />
+					</div>
+				</Link>
 			))}
 		</div>
 	)
