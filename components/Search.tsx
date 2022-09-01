@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 interface Form {
 	search: string
@@ -10,14 +10,14 @@ const Search: React.FC = () => {
 		search: '',
 	})
 
-	const handleChange = (event) => {
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setForm({
 			...form,
 			[event.target.id]: event.target.value,
 		})
 	}
 
-	const handleSubmit = (event) => {
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
 		alert(form.search)
 	}

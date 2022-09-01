@@ -260,7 +260,7 @@ const MainBannerInfo = styled.div`
 const NewsSection = styled.section`
 	width: 100%;
 	height: 900px;
-	background: linear-gradient(199deg, rgb(35, 77, 54), rgb(0, 0, 0));
+	background: linear-gradient(199deg, rgb(16 27 67), rgb(0, 0, 0));
 
 	@media only screen and (max-width: 800px) {
 		height: 1300px;
