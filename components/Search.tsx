@@ -1,4 +1,5 @@
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 import { ChangeEvent, useState } from 'react'
 
 interface Form {
@@ -6,6 +7,7 @@ interface Form {
 }
 
 const Search: React.FC = () => {
+	const router = useRouter()
 	const [form, setForm] = useState<Form>({
 		search: '',
 	})
@@ -19,7 +21,7 @@ const Search: React.FC = () => {
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault()
-		alert(form.search)
+		router.push(`/news?q=${form.search}`)
 	}
 
 	return (
