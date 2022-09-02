@@ -27,9 +27,6 @@ const MainLayout: React.FC = () => {
 				<li>
 					<Search />
 				</li>
-				<li>
-					<p>Añadir Log-in</p>
-				</li>
 			</Ul>
 		</NavBar>
 	)

@@ -277,6 +277,7 @@ const HeadLine = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	margin: 50px 0;
 	> p {
 		font-size: 40px;
 		font-weight: bold;
